@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=2.0" />
+		<title>Weather Application</title>
+
+		<link rel="stylesheet" href="css/style.css">
+
+	</head>
+	<body>
+		<div id="weather-form" class="weather-form">
+			<h1 class="weather-form__heading">Weather</h1>
+			
+			<div class="weather-form__inner-wrap">
+				<form onSubmit="return false">
+					<div class="form-field-wrapper">
+						<label for="city">City</label>
+						<input type="text" v-model="cityName" name="city" id="city" placeholder="Jacksonville">
+					</div>
+					<div class="form-field-wrapper">
+						<label for="state">State</label>
+						<input type="text" v-model="stateName" name="state" id="state" placeholder="FL">
+					</div>
+					<button v-on:click="getWeather()">Get Weather</button>
+				</form>
+
+				<p><b>Temp: </b>{{tempF}}</p>
+				<p><b>Humidity: </b>{{humidity}}</p>
+			</div>
+		</div>
+
+		<script src="https://unpkg.com/vue"></script>
+        <script src="js/script.js"></script>
+	</body>
+</html>
