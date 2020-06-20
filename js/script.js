@@ -18,7 +18,7 @@ new Vue({
     methods: {
         getWeather: function() {
             const apiKey = "dc884d8347e8b27fc4bbbc265f2e9d3c";
-            var url = "http://api.openweathermap.org/data/2.5/weather?appid=" + apiKey;
+            var url = "https://api.openweathermap.org/data/2.5/weather?appid=" + apiKey;
 
 
             if(this.cityName.length > 0){
