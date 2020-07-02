@@ -1,12 +1,3 @@
-
-
-function toTitleCase(str) {
-    return str.replace(/\w\S*/g, function(txt){
-        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-    });
-}
-
-
 new Vue({
     el: '#weather-form',
     data: { 
@@ -14,8 +5,7 @@ new Vue({
         stateNameInput: '',
         temp: '',
         humidity: '',
-        cityName: '',
-        stateName: ''
+        cityName: ''
     },
     
     methods: {
@@ -33,15 +23,16 @@ new Vue({
             }
 
             fetch(url).then(res => res.json()).then(posts => {
-                console.log(posts);
-                this.cityName = toTitleCase(this.cityNameInput);
+                this.cityName = this.toTitleCase(this.cityNameInput);
                 this.temp = Math.round(posts.main.temp) + '°F';
                 this.humidity = posts.main.humidity + '%';
-
                 this.cityNameInput = '';
-                this.stateNameInput = '';
-
             })
+        },
+        toTitleCase: function(str) {
+            return str.replace(/\w\S*/g, function(txt){
+                return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+            });
         }
     },
     computed: {
