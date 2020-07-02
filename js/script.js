@@ -22,7 +22,6 @@ new Vue({
         getWeather: function() {
             var url = "https://api.openweathermap.org/data/2.5/weather?appid=dc884d8347e8b27fc4bbbc265f2e9d3c";
 
-
             if(this.cityNameInput.length > 0){
                 url += "&q=" + this.cityNameInput;
 
@@ -32,10 +31,6 @@ new Vue({
 
                 url += "&units=imperial";
             }
-
-            
-
-
 
             fetch(url).then(res => res.json()).then(posts => {
                 console.log(posts);
@@ -47,17 +42,11 @@ new Vue({
                 this.stateNameInput = '';
 
             })
-
-            fetch('https://api.openweathermap.org/data/2.5/weather?appid=dc884d8347e8b27fc4bbbc265f2e9d3c&q=London')
-            .then(function (response) {
-                console.log(response.json())
-                return response.json();
-            }).then(function (myJson) {
-                console.log(myJson);
-                console.log(console.log(JSON.stringify(myJson)));
-            });
-                
-// .then(posts => {})
+        }
+    },
+    computed: {
+        isDisabled: function(){
+            return this.cityNameInput == ''
         }
     }
 })

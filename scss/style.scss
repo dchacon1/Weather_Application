@@ -37,5 +37,11 @@
         border-radius: 25px;
         margin-left: auto;
         display: block;
+        cursor: pointer;
+
+        &[disabled] {
+            cursor: default;
+            opacity: .5;
+        }
     }
 }

@@ -25,7 +25,7 @@
 						<label for="state">State</label>
 						<input type="text" v-model="stateNameInput" name="state" id="state" placeholder="FL">
 					</div> -->
-					<button v-on:click="getWeather()">Get Weather</button>
+					<button v-bind:disabled="isDisabled" v-on:click="getWeather()">Get Weather</button>
 				</form>
 
 				<div v-if="cityName.length > 0">
