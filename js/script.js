@@ -1,49 +1,63 @@
-// const getWeatherByCity = function(city) {
-//     return "http://api.openweathermap.org/data/2.5/weather?appid=dc884d8347e8b27fc4bbbc265f2e9d3c&q=" + city;
-// }
 
-// =================================================== //
 
-// Your code goes here.
+function toTitleCase(str) {
+    return str.replace(/\w\S*/g, function(txt){
+        return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+    });
+}
+
 
 new Vue({
     el: '#weather-form',
     data: { 
+        cityNameInput: '',
+        stateNameInput: '',
+        temp: '',
+        humidity: '',
         cityName: '',
-        stateName: '',
-        tempF: '',
-        humidity: ''
+        stateName: ''
     },
     
     methods: {
         getWeather: function() {
-            const apiKey = "dc884d8347e8b27fc4bbbc265f2e9d3c";
-            var url = "https://api.openweathermap.org/data/2.5/weather?appid=" + apiKey;
+            var url = "https://api.openweathermap.org/data/2.5/weather?appid=dc884d8347e8b27fc4bbbc265f2e9d3c";
 
 
-            if(this.cityName.length > 0){
-                url += "&q=" + this.cityName;
+            if(this.cityNameInput.length > 0){
+                url += "&q=" + this.cityNameInput;
 
-                if(this.stateName.length > 0){
-                    url += "," + this.stateName;
+                if(this.stateNameInput.length > 0){
+                    url += "," + this.stateNameInput;
                 }
+
+                url += "&units=imperial";
             }
 
+            
 
 
-            return fetch(url).then(res => res.json())
-            .then(posts => {
+
+            fetch(url).then(res => res.json()).then(posts => {
                 console.log(posts);
-                this.tempF = (Math.round(10*(posts.main.temp * (9/5) - 459.67))/10) + '°F';
+                this.cityName = toTitleCase(this.cityNameInput);
+                this.temp = Math.round(posts.main.temp) + '°F';
                 this.humidity = posts.main.humidity + '%';
+
+                this.cityNameInput = '';
+                this.stateNameInput = '';
+
             })
 
-
-
-
-
-            // return fetc
-            
+            fetch('https://api.openweathermap.org/data/2.5/weather?appid=dc884d8347e8b27fc4bbbc265f2e9d3c&q=London')
+            .then(function (response) {
+                console.log(response.json())
+                return response.json();
+            }).then(function (myJson) {
+                console.log(myJson);
+                console.log(console.log(JSON.stringify(myJson)));
+            });
+                
+// .then(posts => {})
         }
     }
 })

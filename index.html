@@ -18,17 +18,22 @@
 				<form onSubmit="return false">
 					<div class="form-field-wrapper">
 						<label for="city">City</label>
-						<input type="text" v-model="cityName" name="city" id="city" placeholder="Jacksonville">
+						<input type="text" v-model="cityNameInput" name="city" id="city" placeholder="Jacksonville" required>
 					</div>
-					<div class="form-field-wrapper">
+					<br>
+					<!-- <div class="form-field-wrapper">
 						<label for="state">State</label>
-						<input type="text" v-model="stateName" name="state" id="state" placeholder="FL">
-					</div>
+						<input type="text" v-model="stateNameInput" name="state" id="state" placeholder="FL">
+					</div> -->
 					<button v-on:click="getWeather()">Get Weather</button>
 				</form>
 
-				<p><b>Temp: </b>{{tempF}}</p>
-				<p><b>Humidity: </b>{{humidity}}</p>
+				<div v-if="cityName.length > 0">
+					<h2>The weather in {{cityName}}:</h2>
+
+					<p><b>Temp: </b>{{temp}}</p>
+					<p><b>Humidity: </b>{{humidity}}</p>
+				</div>
 			</div>
 		</div>
 
